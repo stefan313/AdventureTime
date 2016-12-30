@@ -66,7 +66,7 @@ while 1:
     t = irc.getText()
     print(t)
     if t.find("PRIVMSG " + channel + " :" + nickname) != -1:
-        if t.find("raus!") != -1 and t.find(":Stef!") != -1:
+        if t.find("raus!") != -1 and t.startswith(":Stef!308116@ircbox") != -1:
             irc.send(channel, "ok..., Tschüssch")
             break
         elif t.find("auch") != -1:
