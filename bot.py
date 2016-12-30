@@ -16,10 +16,12 @@ class IRClient:
     def send(self, channel, message):
         self.sock.send(("PRIVMSG " + channel + " :" + message + "\n").encode())
 
-    def connect(self, server, channel, nickname):
+    def connect(self, server, nickname):
         self.sock.connect((server, 6667))
         self.sock.send(("USER " + nickname + " " + nickname + " " + nickname + " :Lets go on an Adventure!\n").encode())
         self.sock.send(("NICK " + nickname + "\n").encode())
+
+    def join(self, channel):
         self.sock.send(("JOIN " + channel + "\n").encode())
 
     def quit(self):
@@ -54,7 +56,8 @@ def getItems(items):
     return head
 
 irc = IRClient()
-irc.connect(server, channel, nickname)
+irc.connect(server, nickname)
+irc.join(channel)
 
 irc.send(channel, "Zeit für ein Abenteur!")
 irc.send(channel, "Heute: " + abenteuer)
