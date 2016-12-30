@@ -73,11 +73,10 @@ while 1:
             irc.send(channel, "Cool, du bist dabei! Derzeit: " + abenteuer)
             i = getItems(items)
             irc.send(channel, "Ihr könnt folgendes tun: " + i )
-
         else:
             resp = items.get(re.findall(":"+ nickname + ": ([a-zA-Z\ ]*)", t)[0], "Lies doch oben was du tun kannst!").split("\n")
             for r in resp:
                 irc.send(channel, r)
                 sleep(1)
-#            irc.send(channel, "under construction, aktuell geht nur: ich will auch mitmachen! oder irgendwas das auf \"auch\" matched")
+
 irc.quit()
