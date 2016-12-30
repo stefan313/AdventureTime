@@ -39,12 +39,12 @@ channel = "#adventuretime"
 server = "irc.fau.de"
 nickname = "AdventureTime"
 
-abenteuer = "Seht oh mächtige Mäuse! A KÄS! Doch OH JE! Der gefährliche katbot bewacht ihn! Was könnt Ihr nur tun um ihn zu bekommen?"
+abenteuer = "Seht oh Ihr mächtigen Mäuse! A KÄS! Doch OH JE! Der gefährliche katbot bewacht ihn! Was könnt Ihr nur tun um ihn zu bekommen?"
 
 items = {
-        "tot stellen" : "katbot durchschaut Euren Trick! Aber wie Katzen so sind, interessiert es nicht weiter und katbot verliert das interesse an Euch",
+        "tot stellen" : "katbot durchschaut Euren Trick! Aber wie Katzen so sind, interessiert es einfach nicht weiter und katbot verliert das Interesse an Euch. Gerade noch mal davon gekommen!",
         "attacke" : "Ihr versucht katbot zu beißen, aber katbot beißt euch zuerst. Ihr seid tot!",
-        "schlaflied singen" : "~sleepy\nkatbot ist eingeschlafen, Ihr könnt nun den KÄS Euch ergattern. Ehre gebühre Euch!"
+        "schlaflied singen" : "Soft katbot, Warm katbot, Little ball of fur, happy katbot, sleepy katbot, purr purr purr.\nkatbot ist eingeschlafen, Ihr könnt nun den KÄS Euch ergattern. Ehre gebühre Euch!"
         }
 
 def getItems(items):
@@ -69,12 +69,12 @@ while 1:
         if t.find("raus!") != -1 and t.startswith(":Stef!308116@ircbox") != -1:
             irc.send(channel, "ok..., Tschüssch")
             break
-        elif t.find("auch") != -1:
+        elif t.find("auch") != -1 or t.find("mitmachen") != -1:
             irc.send(channel, "Cool, du bist dabei! Derzeit: " + abenteuer)
             i = getItems(items)
             irc.send(channel, "Ihr könnt folgendes tun: " + i )
         else:
-            resp = items.get(re.findall(":"+ nickname + ": ([a-zA-Z\ ]*)", t)[0], "Lies doch oben was du tun kannst!").split("\n")
+            resp = items.get(re.findall(":"+ nickname + ": ([a-zA-Z\ ]*)", t)[0], "Falls Ihr auch mitmachen möchtet: Schreibet es mir! Ansonsten: Lies doch oben was Ihr tun könnt!").split("\n")
             for r in resp:
                 irc.send(channel, r)
                 sleep(1)
