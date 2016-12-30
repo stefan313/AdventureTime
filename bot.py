@@ -62,7 +62,6 @@ irc.join(channel)
 irc.send(channel, "Zeit für ein Abenteur!")
 irc.send(channel, "Heute: " + abenteuer)
 i = getItems(items)
-print(i)
 irc.send(channel, "Ihr könnt folgendes tun: " + i )
 
 while 1:
@@ -74,6 +73,9 @@ while 1:
             break
         elif t.find("auch") != -1:
             irc.send(channel, "Cool, du bist dabei! Derzeit: " + abenteuer)
+            i = getItems(items)
+            irc.send(channel, "Ihr könnt folgendes tun: " + i )
+
         else:
             resp = items.get(re.findall(":"+ nickname + ": ([a-zA-Z\ ]*)", t)[0], "Lies doch oben was du tun kannst!").split("\n")
             for r in resp:
