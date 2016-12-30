@@ -29,10 +29,8 @@ class IRClient:
 
     def getText(self):
         text=self.sock.recv(4096).decode()
-
         if text.find("PING") != -1:
             self.sock.send(("PONG " + text.split()[1] + "\n").encode())
-
         return text
 
 channel = "#adventuretime"
