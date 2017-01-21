@@ -36,15 +36,25 @@ class IRClient:
 channel = "#adventuretime"
 # channel = "#faui2k15"
 # channel = "#katbot2"
+# channel = "#mathe"
 server = "irc.fau.de"
 nickname = "AdventureTime"
 
-abenteuer = "Seht oh Ihr mächtigen Mäuse! A KÄS! Doch OH JE! Der gefährliche katbot bewacht ihn! Was könnt Ihr nur tun um ihn zu bekommen?"
+#abenteuer = "Seht oh Ihr mächtigen Mäuse! A KÄS! Doch OH JE! Der gefährliche katbot bewacht ihn! Was könnt Ihr nur tun um ihn zu bekommen?"
+abenteuer = "Helft dem flauschigen hrnz seine love Laura zu ergattern!"
+#items = {
+#        "tot stellen" : "katbot durchschaut Euren Trick! Aber wie Katzen so sind, interessiert es einfach nicht weiter und katbot verliert das Interesse an Euch. Gerade noch mal davon gekommen!",
+#        "attacke" : "Ihr versucht katbot zu beißen, aber katbot beißt euch zuerst. Ihr seid tot!",
+#        "schlaflied singen" : "Soft katbot, Warm katbot, Little ball of fur, happy katbot, sleepy katbot, purr purr purr.\nkatbot ist eingeschlafen, Ihr könnt nun den KÄS Euch ergattern. Ehre gebühre Euch!"
+#        }
 
 items = {
-        "tot stellen" : "katbot durchschaut Euren Trick! Aber wie Katzen so sind, interessiert es einfach nicht weiter und katbot verliert das Interesse an Euch. Gerade noch mal davon gekommen!",
-        "attacke" : "Ihr versucht katbot zu beißen, aber katbot beißt euch zuerst. Ihr seid tot!",
-        "schlaflied singen" : "Soft katbot, Warm katbot, Little ball of fur, happy katbot, sleepy katbot, purr purr purr.\nkatbot ist eingeschlafen, Ihr könnt nun den KÄS Euch ergattern. Ehre gebühre Euch!"
+        "schuechtern ansprechen" : "Laura friendzoned dich!",
+        "ignorieren" : "Wie zur Hölle glaubst du funktioniert das mit den Damen????",
+        "einen auf Matcho machen" : "Leider verzählst du dich und Laura ist einfach besser in Mathe!\nZurück auf die Schulbank mit dir!",
+        "knuddeln" : "Awwwwwwww <3\nNope...",
+        "streicheln" : "Schelle!\nFrauen tascht man nicht einfach so an",
+        "pi aufsagen" : "WOW\nUnd wie soll das jetzt helfen?"
         }
 
 def getItems(items):
@@ -61,6 +71,7 @@ irc.send(channel, "Zeit für ein Abenteur!")
 irc.send(channel, "Heute: " + abenteuer)
 i = getItems(items)
 irc.send(channel, "Ihr könnt folgendes tun: " + i )
+irc.send(channel, "Useage: " + nickname + ": <aktion>")
 
 while 1:
     t = irc.getText()
@@ -77,6 +88,5 @@ while 1:
             resp = items.get(re.findall(":"+ nickname + ": ([a-zA-Z\ ]*)", t)[0], "Falls Ihr auch mitmachen möchtet: Schreibet es mir! Ansonsten: Lies doch oben was Ihr tun könnt!").split("\n")
             for r in resp:
                 irc.send(channel, r)
-                sleep(1)
 
 irc.quit()
