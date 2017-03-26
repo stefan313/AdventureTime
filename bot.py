@@ -25,7 +25,7 @@ class IRClient:
         self.sock.send(("JOIN " + channel + "\n").encode())
 
     def quit(self):
-        self.sock.send(("QUIT :Abentuerzeit! Schalten sie auch nächstes Mal wieder ein!\n").encode())
+        self.sock.send(("QUIT :Abenteuerzeit! Schalten sie auch nächstes Mal wieder ein!\n").encode())
 
     def getText(self):
         text=self.sock.recv(4096).decode()
@@ -33,28 +33,33 @@ class IRClient:
             self.sock.send(("PONG " + text.split()[1] + "\n").encode())
         return text
 
-channel = "#adventuretime"
+#channel = "#adventuretime"
 # channel = "#faui2k15"
-# channel = "#katbot2"
+channel = "#katbot"
 # channel = "#mathe"
 server = "irc.fau.de"
 nickname = "AdventureTime"
 
 #abenteuer = "Seht oh Ihr mächtigen Mäuse! A KÄS! Doch OH JE! Der gefährliche katbot bewacht ihn! Was könnt Ihr nur tun um ihn zu bekommen?"
 abenteuer = "Helft dem flauschigen hrnz seine love Laura zu ergattern!"
-#items = {
-#        "tot stellen" : "katbot durchschaut Euren Trick! Aber wie Katzen so sind, interessiert es einfach nicht weiter und katbot verliert das Interesse an Euch. Gerade noch mal davon gekommen!",
-#        "attacke" : "Ihr versucht katbot zu beißen, aber katbot beißt euch zuerst. Ihr seid tot!",
+
+'''
+items = {
+        "tot stellen" : "katbot durchschaut Euren Trick! Aber wie Katzen so sind, interessiert es einfach nicht weiter und katbot verliert das Interesse an Euch. Gerade noch mal davon gekommen!",
+        "attacke" : "Ihr versucht katbot zu beißen, aber katbot beißt euch zuerst. Ihr seid tot!",
 #        "schlaflied singen" : "Soft katbot, Warm katbot, Little ball of fur, happy katbot, sleepy katbot, purr purr purr.\nkatbot ist eingeschlafen, Ihr könnt nun den KÄS Euch ergattern. Ehre gebühre Euch!"
-#        }
+        "schlaflied singen" : "katbot: sleepy katbot\nkatbot ist eingeschlafen, Ihr könnt nun den KÄS Euch ergattern. Ehre gebühre Euch!"
+        }
+'''
 
 items = {
         "schuechtern ansprechen" : "Laura friendzoned dich!",
         "ignorieren" : "Wie zur Hölle glaubst du funktioniert das mit den Damen????",
-        "einen auf Matcho machen" : "Leider verzählst du dich und Laura ist einfach besser in Mathe!\nZurück auf die Schulbank mit dir!",
+        "einen auf Macho machen" : "Leider verzählst du dich in den komplexen Zahlen in den komplexen Zahlen und Laura ist einfach besser in Mathe!\nZurück auf die Schulbank mit dir!",
         "knuddeln" : "Awwwwwwww <3\nNope...",
         "streicheln" : "Schelle!\nFrauen tascht man nicht einfach so an",
-        "pi aufsagen" : "WOW\nUnd wie soll das jetzt helfen?"
+        "pi aufsagen" : "WOW\nUnd wie soll das jetzt helfen?",
+        "knutschen" : "\n...\nEcht?\nTraust du dich eh nicht..."
         }
 
 def getItems(items):
@@ -67,7 +72,7 @@ irc = IRClient()
 irc.connect(server, nickname)
 irc.join(channel)
 
-irc.send(channel, "Zeit für ein Abenteur!")
+irc.send(channel, "Zeit für ein Abenteuer!")
 irc.send(channel, "Heute: " + abenteuer)
 i = getItems(items)
 irc.send(channel, "Ihr könnt folgendes tun: " + i )
